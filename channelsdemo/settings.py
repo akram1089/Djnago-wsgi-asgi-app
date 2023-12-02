@@ -29,7 +29,7 @@ DEBUG = True
 
 # ...
 
-ALLOWED_HOSTS = ['104.197.199.52', 'your_domain_name', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # ...
 

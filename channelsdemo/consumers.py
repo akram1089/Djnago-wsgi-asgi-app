@@ -1,18 +1,21 @@
 import json
-import random
-from time import sleep
+import asyncio
+from channels.generic.websocket import AsyncWebsocketConsumer
 import requests
+class NumberGenerator(AsyncWebsocketConsumer):
 
-from channels.generic.websocket import WebsocketConsumer
+    async def connect(self):
+        await self.accept()
 
+        # Run a background task to fetch data and send it to the WebSocket
+        await self.send_number()
 
-class NumberGenerator(WebsocketConsumer):
+    async def disconnect(self, close_code):
+        pass
 
-    def connect(self):
-        self.accept()
-
+    async def send_number(self):
         while True:
-            # Fetch data from the API
+            # Replace this with your actual data fetching logic
             api_url = "https://webapi.niftytrader.in/webapi/symbol/today-spot-data?symbol=NIFTY+50"
             response = requests.get(api_url)
             data = response.json()
@@ -27,12 +30,12 @@ class NumberGenerator(WebsocketConsumer):
                 'symbol_name': symbol_name,
                 'last_trade_price': last_trade_price
             }
-            self.send(json.dumps(payload))
 
-            sleep(1)
+            await self.send(text_data=json.dumps(payload))
+            await asyncio.sleep(1)
 
-    def disconnect(self, code):
-        print("Socket disconnected with code", code)
+
+
 # import json
 # from channels.generic.websocket import AsyncWebsocketConsumer
 # from .zerodha_script import ZerodhaAPI, get_enctoken, read_enctoken

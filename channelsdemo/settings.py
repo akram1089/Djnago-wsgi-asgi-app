@@ -29,7 +29,7 @@ DEBUG = True
 
 # ...
 
-ALLOWED_HOSTS = ['34.131.133.49','localhost.]
+ALLOWED_HOSTS = ['34.131.133.49','localhost']
 
 # ...
 

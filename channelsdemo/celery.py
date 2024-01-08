@@ -16,7 +16,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.conf.beat_schedule = {
     'add-two-number': {
         'task': 'channelsdemo.tasks.add',
-        'schedule': crontab(hour=11, minute=45),
+        'schedule': crontab(hour=14, minute=30),
         'args': (2, 3),  # Provide the arguments for your task here
     }
 }

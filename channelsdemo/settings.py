@@ -29,7 +29,7 @@ DEBUG = True
 
 # ...
 
-ALLOWED_HOSTS = ['34.131.133.49','localhost']
+ALLOWED_HOSTS = ['34.131.133.49','127.0.0.1','localhost']
 
 # ...
 
@@ -154,4 +154,30 @@ CELERY_TIMEZONE = 'Asia/Kolkata'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CELERY_IMPORTS = [
     'channelsdemo.tasks',
+]
+
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.algotrde.com',
+    'https://*.127.0.0.1',
+    'https://*.optionperks.com',
+    "http://*.34.100.183.27",
+    "http://34.131.133.49",  # Added IP address here
+]
+
+# CORS Allowed Origins
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://127.0.0.1:80",
+    "http://127.0.0.1:8001",
+    "http://34.100.183.27",
+    "http://localhost",
+    "http://34.131.133.49",  # Added IP address here
+
+    "https://www.algotrde.com",
+    "https://optionperks.com",
+    "http://optionperks.com",
+    "http://www.algotrde.com",
 ]

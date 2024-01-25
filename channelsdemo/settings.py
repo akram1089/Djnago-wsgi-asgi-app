@@ -51,9 +51,16 @@ INSTALLED_APPS = [
     'celery',
     'home',
     'channelsdemo',
+    'rest_framework',
 
 
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ]
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -165,7 +172,15 @@ CELERY_IMPORTS = [
     'channelsdemo.tasks',
 ]
 
-
+# Use channels_redis as the channel layer
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],  # Replace with your Redis server information
+        },
+    },
+}
 
 CSRF_TRUSTED_ORIGINS = [
     'https://*.algotrde.com',

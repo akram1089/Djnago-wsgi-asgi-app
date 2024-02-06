@@ -1,4 +1,5 @@
 # your_app/tasks.py
+from datetime import timezone
 from celery import shared_task
 
 @shared_task
@@ -49,7 +50,8 @@ def get_indices_data():
                     symbol=symbol,
                     symbol_exp_data=api_data,
                     future_data=data_future,
-                    data_option=data_option
+                    data_option=data_option,
+                    added_at=timezone.now()  # Set the added_at field to the current timestamp
                 )
 
                 # For demonstration, let's print the API response

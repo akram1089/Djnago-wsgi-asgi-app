@@ -21,7 +21,7 @@ app.conf.beat_schedule = {
     },
     'get-indices-data': {
         'task': 'channelsdemo.tasks.get_indices_data',
-        'schedule': crontab(hour=16, minute=23),  # Adjust the time here
+        'schedule': crontab(hour=11, minute=51),  # Adjust the time here
         # 'arg':("request")
         # Add any necessary arguments for your 'get_indices_data' task
     },

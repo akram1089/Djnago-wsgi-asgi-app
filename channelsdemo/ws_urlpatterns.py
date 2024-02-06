@@ -9,3 +9,5 @@ ws_urlpatterns = [
     path(r'ws/', NumberGenerator.as_asgi(), name='number-generator'),
     # path(r"ws/zerodha/", ZerodhaAPIConsumer.as_asgi()),
 ]
+
+

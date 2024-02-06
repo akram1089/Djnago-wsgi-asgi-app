@@ -51,9 +51,17 @@ INSTALLED_APPS = [
     'celery',
     'home',
     'channelsdemo',
+    'rest_framework',
+
 
 
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ]
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -63,11 +71,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_otp.middleware.OTPMiddleware',
 ]
+
+OTP_TOTP_ISSUER_NAME = 'home'
 CORS_ORIGIN_WHITELIST = ["*"]
 CROS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'channelsdemo.urls'
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
 
+]
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -124,7 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE =  'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -146,6 +160,8 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# settings.py
+AUTH_USER_MODEL = 'home.CustomUser'
 
 
 # Celery Configuration
@@ -165,7 +181,15 @@ CELERY_IMPORTS = [
     'channelsdemo.tasks',
 ]
 
-
+# Use channels_redis as the channel layer
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],  # Replace with your Redis server information
+        },
+    },
+}
 
 CSRF_TRUSTED_ORIGINS = [
     'https://*.algotrde.com',

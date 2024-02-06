@@ -10,4 +10,8 @@ class ExchangeDataAdmin(admin.ModelAdmin):
     # Add other configurations as needed
 
 
+# admin.py
+from django.contrib import admin
+from .models import CustomUser
 
+admin.site.register(CustomUser)

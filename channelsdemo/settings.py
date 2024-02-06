@@ -160,8 +160,8 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# settings.py
-AUTH_USER_MODEL = 'home.CustomUser'
+# # settings.py
+# AUTH_USER_MODEL = 'home.CustomUser'
 
 
 # Celery Configuration

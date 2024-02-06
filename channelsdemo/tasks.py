@@ -1,5 +1,6 @@
 # your_app/tasks.py
-from datetime import timezone
+from django.utils import timezone
+
 from celery import shared_task
 
 @shared_task
